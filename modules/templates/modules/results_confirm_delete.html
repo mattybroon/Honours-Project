@@ -1,0 +1,16 @@
+{% extends "modules/base.html" %}
+{% block content %}
+    <div class ="container">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Delete Results</legend>
+                <h2>Are you sure you want to delete the {{ module_code }} {{ year }} result for {{ student_id }}?</h2>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
+                <a class="btn btn-outline-info" href="{% url 'results-details' module_code year student_id pk%}">Cancel</a>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

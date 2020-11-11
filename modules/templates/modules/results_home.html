@@ -1,0 +1,32 @@
+{% extends "modules/base.html" %}
+{% block content %}
+    <h1>Results for {{ module_code }} in {{ year }}</h1>
+    <a class="btn btn-secondary" href="{% url 'results-create' module_code year %}">Add Result</a>
+    <p></p>
+    <table class="table table-bordered table-sm">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Student Name</th>
+                <th scope="col">Checkpoints Complete</th>
+                <th scope="col">Assignment Mark Results</th>
+                <th scope="col">Exam Mark Results</th>
+                <th scope="col">Total Mark</th>
+                <th scope="col">Grade</th>
+                <th scope="col">Comment</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for mark in marks %}
+                <tr>
+                    <td><a href="{{ mark.get_absolute_url }} ">{{ mark.student_ID }}</a></td>
+                    <td>{{ mark.checkpoints_complete }}</td>
+                    <td>{{ mark.assignment_mark_results }}</td>
+                    <td>{{ mark.exam_mark_results }}</td>
+                    <td>{{ mark.total_mark }}</td>
+                    <td>{{ mark.grade }}</td>
+                    <td>{{ mark.comment }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

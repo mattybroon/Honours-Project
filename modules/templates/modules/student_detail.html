@@ -1,0 +1,24 @@
+{% extends "modules/base.html" %}
+{% block content %}
+    <h1>Details for {{ object.student_ID }}</h1>
+    <a class="btn btn-secondary" href="{% url 'student-update' object.student_ID %}">Edit Student</a>
+    <p></p>
+    <div class="container">
+        <table class="table table-bordered table-sm">
+            <thead class="thead-light">
+                <tr>
+                    <th>Student ID</th>
+                    <th>Forename</th>
+                    <th>Surname</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ object.student_ID }}</td>
+                    <td>{{ object.student_forename }}</td>
+                    <td>{{ object.student_surname }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

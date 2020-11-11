@@ -1,0 +1,78 @@
+{% extends "modules/base.html" %}
+{% block content %}
+    <div class="container">
+        {% if object.module_coordinator == user or user.is_superuser %}
+            <h1>Details for {{ object.module_code }}</h1>
+            <a class="btn btn-secondary" href="{% url 'module-update' object.module_code %}">Edit Module</a>
+                <form method="POST">
+                {% csrf_token %}
+                <label>Select Year</label>
+                <select name="year">
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                </select>
+                    <input type="submit" value="Select">
+                </form>
+            <table class="table table-bordered table-sm">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Module Code</th>
+                        <th>Module Name</th>
+                        <th>Semester</th>
+                        <th>Occurrence</th>
+                        <th>Credits</th>
+                        <th>SCQF Level</th>
+                        <th>Module Coordinator</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ object.module_code }}</td>
+                        <td>{{ object.module_name }}</td>
+                        <td>{{ object.semester }}</td>
+                        <td>{{ object.occurrence }}</td>
+                        <td>{{ object.module_credits }}</td>
+                        <td>{{ object.module_SCQF }}</td>
+                        <td>{{ object.module_coordinator }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-bordered table-sm">
+                <thead class="thead-light">
+                    <tr align="center">
+                        <th colspan="2">Module Weights</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Number of Checkpoints</th>
+                        <td>{{ object.number_of_checkpoints }}</td>
+                    </tr>
+                    <tr>
+                        <th>Checkpoint Weight</th>
+                        <td>{{ object.checkpoint_weight }}</td>
+                    </tr>
+                    <tr>
+                        <th>Assignment Mark(s)</th>
+                        <td>{{ object.assignment_mark_total }}</td>
+                    </tr>
+                    <tr>
+                        <th>Assignment Weight</th>
+                        <td>{{ object.assignment_weight }}</td>
+                    </tr>
+                    <tr>
+                        <th>Exam Mark{s}</th>
+                        <td>{{ object.exam_mark_total }}</td>
+                    </tr>
+                    <tr>
+                        <th>Exam Weight</th>
+                        <td>{{ object.exam_weight }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+{% endblock content %}

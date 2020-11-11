@@ -1,0 +1,34 @@
+{% extends "modules/base.html" %}
+{% block content %}
+    <h1>Results for {{ module_code }} in {{ year }}</h1>
+    <h1>Student ID: {{ student_id }}</h1>
+    <a class="btn btn-secondary" href="{% url 'results-update' module_code year student_id pk %}">Edit Result</a>
+    <a class="btn btn-danger" href="{% url 'results-delete' module_code year student_id pk %}">Delete Result</a>
+    <p></p>
+    <div class="container">
+        <table class="table table-bordered table-sm">
+            <thead class="thead-light">
+                <tr>
+                    <th>Student Name</th>
+                    <th>Checkpoints Complete</th>
+                    <th>Assignment Mark Results</th>
+                    <th>Exam Mark Results</th>
+                    <th>Total Mark</th>
+                    <th>Grade</th>
+                    <th>Comment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ object.student_ID }}</td>
+                    <td>{{ object.checkpoints_complete }}</td>
+                    <td>{{ object.assignment_mark_results }}</td>
+                    <td>{{ object.exam_mark_results }}</td>
+                    <td>{{ object.total_mark }}</td>
+                    <td>{{ object.grade }}</td>
+                    <td>{{ object.comment }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

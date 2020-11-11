@@ -1,0 +1,36 @@
+{% extends "modules/base.html" %}
+{% block content %}
+    <h1>List of Modules for {{ user.get_full_name }}</h1>
+    <table class="table table-bordered table-sm">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Module Code</th>
+                <th scope="col">Module Name</th>
+                <th scope="col">Semester</th>
+                <th scope="col">Occurrence</th>
+                <th scope="col">Credits</th>
+                <th scope="col">SCQF Level</th>
+                {% if user.is_superuser %}
+                    <th>Module Coordinator</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for module in modules %}
+                {% if module.module_coordinator == user or user.is_superuser %}
+                    <tr>
+                        <td><a href="{{ module.get_absolute_url }}">{{ module.module_code }}</a></td>
+                        <td>{{ module.module_name }}</td>
+                        <td>{{ module.semester }}</td>
+                        <td>{{ module.occurrence }}</td>
+                        <td>{{ module.module_credits }}</td>
+                        <td>{{ module.module_SCQF }}</td>
+                        {% if user.is_superuser %}
+                            <td>{{ module.module_coordinator }}</td>
+                        {% endif %}
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

@@ -1,0 +1,26 @@
+{% extends "modules/base.html" %}
+{% block content %}
+    <h1>List of Students</h1>
+    <a class="btn btn-secondary" href="{% url 'student-create' %}">Add Student</a>
+    <p></p>
+    <div class="container">
+        <table class="table table-bordered table-sm">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Student ID</th>
+                    <th scope="col">Forename</th>
+                    <th scope="col">Surname</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                    <tr>
+                        <td><a href="{{ student.get_absolute_url }}">{{ student.student_ID }}</a></td>
+                        <td>{{ student.student_forename }}</td>
+                        <td>{{ student.student_surname }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}
